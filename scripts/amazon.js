@@ -46,8 +46,10 @@ products.forEach((product) => {
         Added
       </div>
 
+      /*This is where we attach the attribute data-product-id to be used
+      later.  NOTE:  THIS HAS TO START WITH "data-"! */
       <button class="add-to-cart-button button-primary js-add-to-cart"
-      data-product-id="${product.id}">
+      data-product-id="${product.id}" >
         Add to Cart
       </button>
     </div>
@@ -56,9 +58,12 @@ products.forEach((product) => {
 
 document.querySelector('.js-products-grid').innerHTML = productsHTML;
 
+//for the folling we're using "data attribute" attached to an element
+//in order to determine which product is associated with this button
 document.querySelectorAll('.js-add-to-cart')
   .forEach((button) => {
     button.addEventListener('click', () => {
+      //HERE's THAT ATTACHED PROPERTY WE ADDED ABOVE
       const productId = button.dataset.productId;
 
       let matchingItem;
