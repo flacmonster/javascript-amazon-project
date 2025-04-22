@@ -1,7 +1,7 @@
 //The keyword 'export' here allows the variable 'cart' to
 //be accessed from outside this file without having to load
 //the file in a <script src="......." statement
-export const cart = [{
+export let cart = [{
   productId: 'e43638ce-6aa0-4b85-b27f-e1d07eb678c6',
   quantity: 2
 }, {
@@ -27,3 +27,15 @@ export function addToCart(productId) {
     });
   }
 }
+
+export function removeFromCart(productId) {
+ const newCart = [];
+
+ cart.forEach((cartItem) => {
+  if(cartItem.productId !== productId) {
+    newCart.push(cartItem);
+  }
+ });
+
+ cart = newCart;
+};
