@@ -4,6 +4,7 @@
 //cart.js file in the /data path.  ALWAYS at top.
 //And always with Live Server
 import { cart } from '../data/cart.js';
+import { products } from '../data/products.js'
 
 let productsHTML = '';
 
