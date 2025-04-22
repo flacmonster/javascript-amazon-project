@@ -2,8 +2,11 @@
 //to load the script file in order in amazon.html.
 //This is explicitly being 'exported' from the
 //cart.js file in the /data path.  ALWAYS at top.
-//And always with Live Server
-import { cart } from '../data/cart.js';
+//And always with Live Server ALSO: 
+//import * as cartModule from '../data/cart.js
+//works then here you'd type cartModule.cart or
+//cartModule.addToCart.....
+import { cart, addToCart } from '../data/cart.js';
 import { products } from '../data/products.js'
 
 let productsHTML = '';
@@ -66,6 +69,17 @@ products.forEach((product) => {
 
 document.querySelector('.js-products-grid').innerHTML = productsHTML;
 
+function updateCartQuantity() {
+  let cartQuantity = 0;
+
+  cart.forEach((cartItem) => {
+    cartQuantity += cartItem.quantity;
+  });
+
+  document.querySelector('.js-cart-quantity')
+    .innerHTML = cartQuantity;
+}
+
 //for the folling we're using "data attribute" attached to an element
 //in order to determine which product is associated with this button
 document.querySelectorAll('.js-add-to-cart')
@@ -74,30 +88,7 @@ document.querySelectorAll('.js-add-to-cart')
       //HERE's THAT ATTACHED PROPERTY WE ADDED ABOVE
       const productId = button.dataset.productId;
 
-      let matchingItem;
-
-      cart.forEach((item) => {
-        if (productId === item.productId) {
-          matchingItem = item;
-        }
-      });
-
-      if (matchingItem) {
-        matchingItem.quantity += 1;
-      } else {
-        cart.push({
-          productId: productId,
-          quantity: 1
-        });
-      }
-
-      let cartQuantity = 0;
-
-      cart.forEach((item) => {
-        cartQuantity += item.quantity;
-      });
-
-      document.querySelector('.js-cart-quantity')
-        .innerHTML = cartQuantity;
+      addToCart(productId);
+      updateCartQuantity();
     });
   });
