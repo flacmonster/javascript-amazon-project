@@ -57,8 +57,8 @@ products.forEach((product) => {
         Added
       </div>
 
-      /*This is where we attach the attribute data-product-id to be used
-      later.  NOTE:  THIS HAS TO START WITH "data-"! */
+      <!--This is where we attach the attribute data-product-id to be used
+      later.  NOTE:  THIS HAS TO START WITH "data-"! -->
       <button class="add-to-cart-button button-primary js-add-to-cart"
       data-product-id="${product.id}" >
         Add to Cart
