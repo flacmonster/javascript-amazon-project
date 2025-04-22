@@ -1,3 +1,10 @@
+//How to get to the 'cart' object without having
+//to load the script file in order in amazon.html.
+//This is explicitly being 'exported' from the
+//cart.js file in the /data path.  ALWAYS at top.
+//And always with Live Server
+import { cart } from '../data/cart.js';
+
 let productsHTML = '';
 
 products.forEach((product) => {
