@@ -1,9 +1,6 @@
-//The keyword 'export' here allows the variable 'cart' to
-//be accessed from outside this file without having to load
-//the file in a <script src="......." statement
 export let cart = JSON.parse(localStorage.getItem('cart'));
 
-if(!cart) {
+if (!cart) {
   cart = [{
     productId: 'e43638ce-6aa0-4b85-b27f-e1d07eb678c6',
     quantity: 2,
@@ -34,7 +31,7 @@ export function addToCart(productId) {
     cart.push({
       productId: productId,
       quantity: 1,
-      deliverOptionId: '1'
+      deliveryOptionId: '1'
     });
   }
 
@@ -45,12 +42,26 @@ export function removeFromCart(productId) {
   const newCart = [];
 
   cart.forEach((cartItem) => {
-  if(cartItem.productId !== productId) {
-    newCart.push(cartItem);
-  }
+    if (cartItem.productId !== productId) {
+      newCart.push(cartItem);
+    }
   });
 
   cart = newCart;
 
   saveToStorage();
-};
+}
+
+export function updateDeliveryOption(productId, deliveryOptionId) {
+  let matchingItem;
+
+  cart.forEach((cartItem) => {
+    if (productId === cartItem.productId) {
+      matchingItem = cartItem;
+    }
+  });
+
+  matchingItem.deliveryOptionId = deliveryOptionId;
+
+  saveToStorage();
+}

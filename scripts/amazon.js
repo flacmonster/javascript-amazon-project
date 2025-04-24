@@ -6,9 +6,9 @@
 //import * as cartModule from '../data/cart.js
 //works then here you'd type cartModule.cart or
 //cartModule.addToCart.....
-import { cart, addToCart } from '../data/cart.js';
-import { products } from '../data/products.js';
-import { formatCurrency } from './utils/money.js';
+import {cart, addToCart} from '../data/cart.js';
+import {products} from '../data/products.js';
+import {formatCurrency} from './utils/money.js';
 
 let productsHTML = '';
 
@@ -58,10 +58,8 @@ products.forEach((product) => {
         Added
       </div>
 
-      <!--This is where we attach the attribute data-product-id to be used
-      later.  NOTE:  THIS HAS TO START WITH "data-"! -->
       <button class="add-to-cart-button button-primary js-add-to-cart"
-      data-product-id="${product.id}" >
+      data-product-id="${product.id}">
         Add to Cart
       </button>
     </div>
@@ -81,14 +79,10 @@ function updateCartQuantity() {
     .innerHTML = cartQuantity;
 }
 
-//for the folling we're using "data attribute" attached to an element
-//in order to determine which product is associated with this button
 document.querySelectorAll('.js-add-to-cart')
   .forEach((button) => {
     button.addEventListener('click', () => {
-      //HERE's THAT ATTACHED PROPERTY WE ADDED ABOVE
       const productId = button.dataset.productId;
-
       addToCart(productId);
       updateCartQuantity();
     });
