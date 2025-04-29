@@ -1,11 +1,3 @@
-//How to get to the 'cart' object without having
-//to load the script file in order in amazon.html.
-//This is explicitly being 'exported' from the
-//cart.js file in the /data path.  ALWAYS at top.
-//And always with Live Server ALSO: 
-//import * as cartModule from '../data/cart.js
-//works then here you'd type cartModule.cart or
-//cartModule.addToCart.....
 import {cart, addToCart} from '../data/cart.js';
 import {products} from '../data/products.js';
 import {formatCurrency} from './utils/money.js';
@@ -26,14 +18,14 @@ products.forEach((product) => {
 
       <div class="product-rating-container">
         <img class="product-rating-stars"
-          src="images/ratings/rating-${product.rating.stars * 10}.png">
+          src="${product.getStarsUrl()}">
         <div class="product-rating-count link-primary">
           ${product.rating.count}
         </div>
       </div>
 
       <div class="product-price">
-        $${formatCurrency(product.priceCents)}
+        ${product.getPrice()}
       </div>
 
       <div class="product-quantity-container">
@@ -50,6 +42,8 @@ products.forEach((product) => {
           <option value="10">10</option>
         </select>
       </div>
+
+      ${product.extraInfoHTML()}
 
       <div class="product-spacer"></div>
 
