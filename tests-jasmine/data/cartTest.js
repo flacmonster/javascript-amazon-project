@@ -21,8 +21,14 @@ describe('test suite: addToCart', () => {
   });
 
   it('adds a new product to the cart', () => {
+    //Mock local storage, specifically its "setItem" method
     spyOn(localStorage, 'setItem');
 
+    //Mock localStorage, specifically its "getItem" and 
+    //replace that method's functionality with, in this case,
+    //'return JSON.stringify to return an empty array as string'
+
+    //MOCKs ONLY LAST FOR A SINGE TEST!!!!!!!!!!!!!!!!!!!!!!!!
     spyOn(localStorage, 'getItem').and.callFake(() => {
       return JSON.stringify([]);
     });
